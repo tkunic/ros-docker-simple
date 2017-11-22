@@ -10,9 +10,9 @@ sudo apt-get install docker
 
 And that's it!
 
-# FAQ
+## FAQ
 
-## How can I use a different version of ROS?
+### How can I use a different version of ROS?
 
 This works with [any supported version of ROS](https://hub.docker.com/_/ros/), just edit the top line of the Dockerfile. For example, if you want ROS Kinetic:
 
@@ -20,19 +20,19 @@ This works with [any supported version of ROS](https://hub.docker.com/_/ros/), j
 FROM ros:kinetic-ros-base
 ```
 
-## Can I use [my favourite IDE/editor] with this?
+### Can I use [my favourite IDE/editor] with this?
 
 Yup! The `catkin_ws` directory is mounted as a volume inside the container, so you can edit your code as usual, and it will be automatically synced with the container.
 
-## Where is my `catkin_ws` workspace mounted inside the container?
+### Where is my `catkin_ws` workspace mounted inside the container?
 
 Inside the container, the `catkin_ws` folder will be mounted at root (`/catkin_ws`). 
 
-## How do I install additional packages / dependencies / tools?
+### How do I install additional packages / dependencies / tools?
 
 Add your dependencies to the RUN command in the `Dockerfile` (this example installs `tmux` and `ros-kinetic-serial` packages using apt, you can add any additional commands or packages you like).
 
-## I need another terminal window in the container!
+### I need another terminal window in the container!
 
 I recommend [tmux](https://robots.thoughtbot.com/a-tmux-crash-course) as an easy way to manage multiple shells in ROS.
 
@@ -42,7 +42,7 @@ However, if you really want multiple terminal windows instead, you can open a ne
 docker exec -it ros-docker-simple /bin/bash
 ```
 
-## I want to run a different command on container startup!
+### I want to run a different command on container startup!
 
 You can give your command as an argument to `script/run`, for example:
 
@@ -50,15 +50,15 @@ You can give your command as an argument to `script/run`, for example:
 script/run roslaunch example.launch
 ```
 
-## How do I pass a device (e.g. serial, joystick) to the container?
+### How do I pass a device (e.g. serial, joystick) to the container?
 
 Edit `script/run` and add the line `--device=/dev/ttyUSB0 \` (changing the `/dev` path to match the path to your device).
 
-## How can I easily coordinate multiple containers and have them talk to one another?
+### How can I easily coordinate multiple containers and have them talk to one another?
 
 The `docker-compose` tool is the standard way to run multiple containers together: https://docs.docker.com/compose/overview/
 
-## Running the scripts gives me a `permission denied` error!
+### Running the scripts gives me a `permission denied` error!
 
 Is it this one?
 
@@ -68,7 +68,7 @@ docker: Got permission denied while trying to connect to the Docker daemon socke
 
 Reason: your user does not have privileges to run Docker. Put your user into the `docker` group or run with `sudo`.
 
-## It gives me a `/ros_entrypoint.sh: line 6: (...): No such file or directory` error!
+### It gives me a `/ros_entrypoint.sh: line 6: (...): No such file or directory` error!
 
 Instead of giving it a command like this:
 
