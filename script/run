@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PROJECT_ROOT="$(cd "$(dirname "$0")"; cd ..; pwd)"
+
+docker run -it \
+  --name ros-docker-simple \
+  --volume ${PROJECT_ROOT}/catkin_ws:/catkin_ws \
+  --rm \
+  ros-docker-simple "$@"
+
+# Share a device with the Docker container by adding:
+#   --device=/dev/ttyUSB0 \
+# below the line containing "--name"

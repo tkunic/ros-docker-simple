@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PROJECT_ROOT="$(cd "$(dirname "$0")"; cd ..; pwd)"
+
+echo "Building Docker image..."
+docker build -t ros-docker-simple .
+
+echo "Running catkin_make..."
+${PROJECT_ROOT}/script/run sh -c 'cd /catkin_ws/ && catkin_make'
